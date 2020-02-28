@@ -1,0 +1,35 @@
+body {
+    margin: auto;
+    width: 60%;
+    background-color: black;
+    color:white;
+    
+}
+
+.birdgame {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+input[type=text]{
+    border-radius: 10px;
+    padding-left: 2%;
+    font-size: 40px;  
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: greenyellow;
+}
+
+a:visited {
+    color:grey;
+}
+
+a:hover {
+    color:magenta;
+}
