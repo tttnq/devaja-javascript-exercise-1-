@@ -1,52 +1,59 @@
-const birds = ["sinisorsa", "metso", "teeri", "varis", "tikka", "harmaalokki", "punatulkku", "korppi", "merikotka", "laulujoutsen"];
+const birds = [
+    "sinisorsa",
+    "metso",
+    "teeri",
+    "varis",
+    "tikka",
+    "harmaalokki",
+    "punatulkku",
+    "korppi",
+    "merikotka",
+    "laulujoutsen"
+];
+
 let birdIndex = 0;
-let firstOrLastIndex = "first";
+let isFirstIndex = true;
 let currentBird = birds[birdIndex];
 
-document.addEventListener('keypress', checkInput);
+document.addEventListener("keypress", checkInput);
 
-function getFirstBird(){
-    document.getElementById("bird").value = currentBird;   
+function getFirstBird() {
+    document.getElementById("bird").value = currentBird;
 }
 
-function checkInput(input){
-    const birdCode = currentBird.charCodeAt(getIndexFromBird(firstOrLastIndex));
+function checkInput(input) {
+    const birdCode = currentBird.charCodeAt(getIndexFromBird(isFirstIndex));
     const inputCode = input.keyCode;
 
-    if(inputCode === birdCode){ 
-        if(firstOrLastIndex === "last"){
-            currentBird = currentBird.split(currentBird.charAt(currentBird.length-1)).join('');
+    if (inputCode === birdCode) {
+        if (isFirstIndex) {
+            currentBird = currentBird.split(currentBird.charAt(0)).join("");
             document.getElementById("bird").value = currentBird;
-            firstOrLastIndex = "first";
-        }  else {
-            currentBird = currentBird.split(currentBird.charAt(0)).join('');
+            isFirstIndex = false;
+        } else {
+            currentBird = currentBird.split(currentBird.charAt(currentBird.length - 1)).join("");
             document.getElementById("bird").value = currentBird;
-            firstOrLastIndex = "last";
-        }   
-    } 
+            isFirstIndex = true;
+        }
+    }
 
-    
-
-    if(currentBird.length < 1){
-        if(birdIndex === birds.length -1){
+    if (currentBird.length < 1) {
+        if (birdIndex === birds.length - 1) {
             document.getElementById("bird").value = "The End! :)";
             return;
         }
 
         birdIndex++;
-        firstOrLastIndex = "first";
+        isFirstIndex = true;
         currentBird = birds[birdIndex];
         document.getElementById("bird").value = currentBird;
     }
-        
-
 }
 
-function getIndexFromBird(i){
-    if(i === "first"){
+function getIndexFromBird(index) {
+    if (index) {
         return 0;
-    } else if(i === "last"){
-        return currentBird.length-1;
+    } else {
+        return currentBird.length - 1;
     }
 }
-
